@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="log-journal">
 <meta property="og:description" content="Generators are functions which can be paused (yielded) and resumed midway of execution. The state of the function is retained between pauses. Generators can also send out or take in values at pauses.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-14T13:28:43.258Z">
+<meta property="og:updated_time" content="2018-10-14T14:00:53.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript Generator Functions">
 <meta name="twitter:description" content="Generators are functions which can be paused (yielded) and resumed midway of execution. The state of the function is retained between pauses. Generators can also send out or take in values at pauses.">
@@ -139,7 +139,7 @@
 <ul>
 <li>Generator functions can act as a lazy-evaluated version of an array.</li>
 <li>Unlike arrays, values are not pre-determined. It is evalutated and pulled on demand.</li>
-<li>Unlike arrays, it values don’t require memory allocated and does not require memory growing with growing length of data.</li>
+<li>Unlike arrays, values don’t require memory allocated and does not require memory growing with growing length of data.</li>
 </ul>
 <h3 id="Infinite-stream-of-data"><a href="#Infinite-stream-of-data" class="headerlink" title="Infinite stream of data"></a>Infinite stream of data</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">fibonacciStream</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> secondLast = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> last = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> secondLast;</span><br><span class="line">    <span class="keyword">yield</span> last;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        value = secondLast + last;</span><br><span class="line">        secondLast = last;</span><br><span class="line">        last = value;</span><br><span class="line">        <span class="keyword">yield</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> iterator = fibonacciStream();</span><br><span class="line"></span><br><span class="line"><span class="comment">//get first 100 values from the Fibonacci Series</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(iterator.next().value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>An infinite stream of data can be easily created with <code>yield</code> inside an endless loop. Lazily evaluated, memory efficient and on-demand attributes apply.</p>
