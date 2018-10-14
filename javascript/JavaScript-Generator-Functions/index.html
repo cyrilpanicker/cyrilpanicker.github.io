@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Generators are functions which can be paused (yielded) and resumed midway of execution. The state of the function is retained between pauses. Generators can also send out or take in values at pauses.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Generator Functions">
+<meta property="og:url" content="http://yoursite.com/javascript/JavaScript-Generator-Functions/index.html">
+<meta property="og:site_name" content="log-journal">
+<meta property="og:description" content="Generators are functions which can be paused (yielded) and resumed midway of execution. The state of the function is retained between pauses. Generators can also send out or take in values at pauses.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-14T12:49:53.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript Generator Functions">
+<meta name="twitter:description" content="Generators are functions which can be paused (yielded) and resumed midway of execution. The state of the function is retained between pauses. Generators can also send out or take in values at pauses.">
+    
+    
+    <!-- title -->
+    <title>JavaScript Generator Functions</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/javascript/JavaScript-Generator-Functions/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&text=JavaScript Generator Functions"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&is_video=false&description=JavaScript Generator Functions"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript Generator Functions&body=Check out this article: http://yoursite.com/javascript/JavaScript-Generator-Functions/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&name=JavaScript Generator Functions&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-function-with-pauses"><span class="toc-number">1.</span> <span class="toc-text">Generator as a function with pauses</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-producer-stream-of-values"><span class="toc-number">2.</span> <span class="toc-text">Generator as a producer / stream of values</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazily-evaluated-memory-efficient-on-demand-stream-of-data"><span class="toc-number">2.1.</span> <span class="toc-text">Lazily evaluated, memory efficient, on-demand stream of data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Infinite-stream-of-data"><span class="toc-number">2.2.</span> <span class="toc-text">Infinite stream of data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazy-stream-processing-pipeline"><span class="toc-number">2.3.</span> <span class="toc-text">Lazy stream-processing pipeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-consumer-observer-of-values"><span class="toc-number">3.</span> <span class="toc-text">Generator as a consumer / observer of values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-coroutine-producer-consumer"><span class="toc-number">4.</span> <span class="toc-text">Generator as a coroutine (producer-consumer)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronous-code-for-asynchronous-actions"><span class="toc-number">4.1.</span> <span class="toc-text">Synchronous code for asynchronous actions</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript Generator Functions
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">log-journal</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-14T12:49:53.000Z" itemprop="datePublished">2018-10-14</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ul>
+<li>Generators are functions which can be paused (yielded) and resumed midway of execution.</li>
+<li>The state of the function is retained between pauses.</li>
+<li>Generators can also send out or take in values at pauses.</li>
+</ul>
+<h2 id="Generator-as-a-function-with-pauses"><a href="#Generator-as-a-function-with-pauses" class="headerlink" title="Generator as a function with pauses"></a>Generator as a function with pauses</h2><ul>
+<li>Below is a simple example for a generator.</li>
+<li>Generators are marked with a <code>*</code> after the <code>function</code> keyword.</li>
+<li>Execution gets paused whenever <code>yield</code> is encountered.</li>
+<li>On pause, the control is passed back to the caller.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">demo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-----------1----------'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'---------------pausing'</span>);</span><br><span class="line">    <span class="keyword">yield</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-----------2----------'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'---------------pausing'</span>);</span><br><span class="line">    <span class="keyword">yield</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-----------3----------'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'-------------returning'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Below is an example of how the above generator could be run. Invoking the generator, does not run it. Instead it returns an object which has a method <code>next</code> through which the function could be executed through the pauses.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> iterator = demo();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'starting--------------'</span>);</span><br><span class="line">iterator.next();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'resuming--------------'</span>);</span><br><span class="line">iterator.next();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'resuming--------------'</span>);</span><br><span class="line">iterator.next();</span><br></pre></td></tr></table></figure>
+<p>First call to <code>iterator.next</code> starts the execution and continues to the first <code>yield</code>. Each subsequent call to <code>iterator.next</code> resumes execution from the last <code>yield</code> to the next <code>yield</code>. Below is how the result would look.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">starting--------------</span><br><span class="line">-----------1----------</span><br><span class="line">---------------pausing</span><br><span class="line">resuming--------------</span><br><span class="line">-----------2----------</span><br><span class="line">---------------pausing</span><br><span class="line">resuming--------------</span><br><span class="line">-----------3----------</span><br><span class="line">-------------returning</span><br></pre></td></tr></table></figure>
+<h2 id="Generator-as-a-producer-stream-of-values"><a href="#Generator-as-a-producer-stream-of-values" class="headerlink" title="Generator as a producer / stream of values"></a>Generator as a producer / stream of values</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">producer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//random code here</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//random code here</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Generators can send out values when yielding. These values can be accessed by the caller from the object returned by <code>iterator.next</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">const</span> iterator = producer();</span><br><span class="line">result = iterator.next();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;result.value&#125;</span> received by caller`</span>);</span><br><span class="line">result = iterator.next();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;result.value&#125;</span> received by caller`</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line"><span class="comment">// 1 received by caller</span></span><br><span class="line"><span class="comment">// 2 received by caller</span></span><br></pre></td></tr></table></figure>
+<p>Object return by <code>iterator.next()</code> has two properties:</p>
+<ul>
+<li><code>value</code> - the actual value yielded by generator</li>
+<li><code>done</code> - a boolean to let the caller know if the generator has finished execution to completion.</li>
+</ul>
+<p>The <code>producer</code> function above can be run to completion with this api and a <code>while</code> loop.<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> iterator = producer();</span><br><span class="line"><span class="keyword">let</span> result = iterator.next();</span><br><span class="line"><span class="keyword">while</span>(!result.done)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;result.value&#125;</span> received by caller`</span>);</span><br><span class="line">    result = iterator.next();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line"><span class="comment">// 1 received by caller</span></span><br><span class="line"><span class="comment">// 2 received by caller</span></span><br></pre></td></tr></table></figure></p>
+<p>Looping over generator iterables can be further simplified like looping over arrays using <code>for...of</code> construct. <code>for...of</code> automatically handles dealing with the iterator api.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> producer())&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;i&#125;</span> received by caller`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// output:</span></span><br><span class="line"><span class="comment">// 1 received by caller</span></span><br><span class="line"><span class="comment">// 2 received by caller</span></span><br></pre></td></tr></table></figure>
+<h3 id="Lazily-evaluated-memory-efficient-on-demand-stream-of-data"><a href="#Lazily-evaluated-memory-efficient-on-demand-stream-of-data" class="headerlink" title="Lazily evaluated, memory efficient, on-demand stream of data"></a>Lazily evaluated, memory efficient, on-demand stream of data</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">stream</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">yield</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//prints all values (0-9) yielded by the generator</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> stream())&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Generator functions can act as a lazy-evaluated version of an array.</li>
+<li>Unlike arrays, values are not pre-determined. It is evalutated and pulled on demand.</li>
+<li>Unlike arrays, it values don’t require memory allocated and does not require memory growing with growing length of data.</li>
+</ul>
+<h3 id="Infinite-stream-of-data"><a href="#Infinite-stream-of-data" class="headerlink" title="Infinite stream of data"></a>Infinite stream of data</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">fibonacciStream</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> secondLast = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> last = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> secondLast;</span><br><span class="line">    <span class="keyword">yield</span> last;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        value = secondLast + last;</span><br><span class="line">        secondLast = last;</span><br><span class="line">        last = value;</span><br><span class="line">        <span class="keyword">yield</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> iterator = fibonacciStream();</span><br><span class="line"></span><br><span class="line"><span class="comment">//get first 100 values from the Fibonacci Series</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(iterator.next().value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>An infinite stream of data can be easily created with <code>yield</code> inside an endless loop. Lazily evaluated, memory efficient and on-demand attributes apply.</p>
+<h3 id="Lazy-stream-processing-pipeline"><a href="#Lazy-stream-processing-pipeline" class="headerlink" title="Lazy stream-processing pipeline"></a>Lazy stream-processing pipeline</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//sends stream</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">range</span>(<span class="params">limit</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;limit;i++)&#123;</span><br><span class="line">        <span class="keyword">yield</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//receives and sends stream</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">square</span>(<span class="params">numbers</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> number <span class="keyword">of</span> numbers)&#123;</span><br><span class="line">        <span class="keyword">yield</span> number * number;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//receives and sends stream</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">add5</span>(<span class="params">numbers</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> number <span class="keyword">of</span> numbers)&#123;</span><br><span class="line">        <span class="keyword">yield</span> number + <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//declarations</span></span><br><span class="line"><span class="keyword">const</span> numbersLessThan10 = range(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">const</span> squaresOfNumbersLessThan10 = square(numbersLessThan10);</span><br><span class="line"><span class="keyword">const</span> squaresOfNumbersLessThan10Added5 = add5(squaresOfNumbersLessThan10);</span><br><span class="line"></span><br><span class="line"><span class="comment">//evalution</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> squaresOfNumbersLessThan10Added5)&#123;</span><br><span class="line">    <span class="comment">//prints (x^2+5) where x starts from 0 and continues to 9</span></span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>With generators linked to each other, a stream-processing pipeline can be created.</li>
+<li>In the above example, <code>range</code>, <code>square</code> and <code>add5</code> are generators. <code>range</code> receives a number and sends out a stream of values. <code>square</code> and <code>add5</code> receive streams, process them and send out new streams. These are like UNIX commands which allow piping in and piping out of streams.</li>
+<li>Relationships between the generators can be declared, without any actual evaluation. If these were UNIX commands, it would have looked like <code>range 10 | square | add5</code>.</li>
+<li>In the above example, evaluation actually starts with the <code>for...of</code> loop and continues sequentially for each number in the stream generated by <code>range</code>. <code>for...of</code> loop only refers the last generator in pipeline. The other generators are iterated on demand through the pipeline.</li>
+</ul>
+<h2 id="Generator-as-a-consumer-observer-of-values"><a href="#Generator-as-a-consumer-observer-of-values" class="headerlink" title="Generator as a consumer / observer of values"></a>Generator as a consumer / observer of values</h2><p>When <code>yield</code> is used on the RHS of an assignment, the generator can accept values from the caller.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">consumer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> input = <span class="literal">null</span>;</span><br><span class="line">    input = <span class="keyword">yield</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;input&#125;</span> received by generator`</span>);</span><br><span class="line">    input = <span class="keyword">yield</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;input&#125;</span> received by generator`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> iterator = consumer();</span><br><span class="line">iterator.next();</span><br><span class="line">iterator.next(<span class="number">3</span>);</span><br><span class="line">iterator.next(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//output:</span></span><br><span class="line"><span class="comment">//3 received by generator</span></span><br><span class="line"><span class="comment">//4 received by generator</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>iterator.next()</code> takes the execution to the first <code>yield</code> inside <code>consumer</code>. </li>
+<li><code>iterator.next(3)</code> passes <code>3</code> to the first <code>yield</code>, resumes execution, and continues execution till second <code>yield</code>.</li>
+<li><code>iterator.next(4)</code>passes <code>4</code> to the second <code>yield</code>, resumes execution, and continues execution till the end.</li>
+</ul>
+<h2 id="Generator-as-a-coroutine-producer-consumer"><a href="#Generator-as-a-coroutine-producer-consumer" class="headerlink" title="Generator as a coroutine (producer-consumer)"></a>Generator as a coroutine (producer-consumer)</h2><p><code>yield</code> keyword can be used as in the below example, to send and receive values simultaneously, like a coroutine. A coroutine is a multi-tasker program which can communicate bi-directionally with a main program.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">coroutine</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> input = <span class="literal">null</span>;</span><br><span class="line">    input = <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;input&#125;</span> received by generator`</span>);</span><br><span class="line">    input = <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;input&#125;</span> received by generator`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//main program</span></span><br><span class="line"><span class="keyword">let</span> result = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">const</span> iterator = coroutine();</span><br><span class="line">result = iterator.next();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;result.value&#125;</span> received by caller`</span>);</span><br><span class="line">result = iterator.next(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;result.value&#125;</span> received by caller`</span>);</span><br><span class="line">result = iterator.next(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//output:</span></span><br><span class="line"><span class="comment">//1 received by caller</span></span><br><span class="line"><span class="comment">//2 received by generator</span></span><br><span class="line"><span class="comment">//3 received by caller</span></span><br><span class="line"><span class="comment">//4 received by generator</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>iterator.next()</code> takes the execution to the first <code>yield</code> inside <code>coroutine</code>. Since the first <code>yield</code> sends out <code>1</code>, the main program receives <code>1</code>.</li>
+<li><code>iterator.next(2)</code> passes <code>2</code> to the first <code>yield</code>, resumes execution, and continues execution till second <code>yield</code>. Since the second <code>yield</code> sends out <code>3</code>, the main program receives <code>3</code>.</li>
+<li><code>iterator.next(4)</code> passes <code>4</code> to the second <code>yield</code>, resumes execution, and continues execution till the end.</li>
+</ul>
+<h3 id="Synchronous-code-for-asynchronous-actions"><a href="#Synchronous-code-for-asynchronous-actions" class="headerlink" title="Synchronous code for asynchronous actions"></a>Synchronous code for asynchronous actions</h3><ul>
+<li>Coroutines can be used as a pattern to write synchronous code for asynchronous calls.</li>
+<li>This can be achieved by ‘yielding’ the promise returned from asynchronous calls.</li>
+<li>The main program will receive the promise and once the promise is resolved, the main program can insert the result of the resolved promise back to the coroutine.</li>
+<li>Coroutine remains in paused state while asynchronous action is running.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> asynchronousCall1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="number">1000</span>),<span class="number">1000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> asynchronousCall2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> resolve(<span class="number">2000</span>),<span class="number">2000</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">coroutine</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> resultOfAsynchronousCall1 = <span class="keyword">yield</span> asynchronousCall1();<span class="comment">//1000</span></span><br><span class="line">    <span class="keyword">const</span> resultOfAsynchronousCall2 = <span class="keyword">yield</span> asynchronousCall2();<span class="comment">//2000</span></span><br><span class="line">    <span class="built_in">console</span>.log(resultOfAsynchronousCall1 + resultOfAsynchronousCall2);<span class="comment">//3000</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//main program or library</span></span><br><span class="line"><span class="keyword">const</span> iterator = coroutine();</span><br><span class="line"><span class="keyword">const</span> promise1 = iterator.next().value;</span><br><span class="line">promise1.then(<span class="function"><span class="params">value1</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> promise2 = iterator.next(value1).value;</span><br><span class="line">    <span class="keyword">return</span> promise2;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">value2</span> =&gt;</span> &#123;</span><br><span class="line">    iterator.next(value2);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Coroutine remains synchronous while the main program handles sending results of asynchronous calls back to the coroutine and resuming it.</li>
+<li>The functions of the main program can be automated and abstracted.</li>
+<li>This is what happens under the hood for <code>async/await</code>. The main program’s functions are abstracted by the environment.</li>
+<li>There are libraries which let us write coroutines for asynchronous calls in a similar way. Such libraries abstract the grunt work and let us write synchronous code. Examples would be <a href="https://github.com/tj/co" target="_blank" rel="noopener">co.js</a>, <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="noopener">redux-saga</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-function-with-pauses"><span class="toc-number">1.</span> <span class="toc-text">Generator as a function with pauses</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-producer-stream-of-values"><span class="toc-number">2.</span> <span class="toc-text">Generator as a producer / stream of values</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazily-evaluated-memory-efficient-on-demand-stream-of-data"><span class="toc-number">2.1.</span> <span class="toc-text">Lazily evaluated, memory efficient, on-demand stream of data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Infinite-stream-of-data"><span class="toc-number">2.2.</span> <span class="toc-text">Infinite stream of data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazy-stream-processing-pipeline"><span class="toc-number">2.3.</span> <span class="toc-text">Lazy stream-processing pipeline</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-consumer-observer-of-values"><span class="toc-number">3.</span> <span class="toc-text">Generator as a consumer / observer of values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator-as-a-coroutine-producer-consumer"><span class="toc-number">4.</span> <span class="toc-text">Generator as a coroutine (producer-consumer)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Synchronous-code-for-asynchronous-actions"><span class="toc-number">4.1.</span> <span class="toc-text">Synchronous code for asynchronous actions</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/javascript/JavaScript-Generator-Functions/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&text=JavaScript Generator Functions"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&is_video=false&description=JavaScript Generator Functions"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript Generator Functions&body=Check out this article: http://yoursite.com/javascript/JavaScript-Generator-Functions/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&title=JavaScript Generator Functions"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/javascript/JavaScript-Generator-Functions/&name=JavaScript Generator Functions&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Cyril Sadasivan Panicker
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
